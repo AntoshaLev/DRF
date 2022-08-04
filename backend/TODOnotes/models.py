@@ -1,19 +1,6 @@
 from django.db import models
-# from django.contrib.auth.base_user import AbstractBaseUser
-# from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.utils.translation import gettext_lazy as _
 
-
-# class User(models.Model):
-#     user_name = models.CharField(max_length=64)
-#     first_name = models.CharField(max_length=64)
-#     last_name = models.CharField(max_length=64)
-#     email = models.CharField(max_length=64, unique=True)
-#
-#
-# class Admin(models.Model):
-#     admin_name = models.CharField(max_length=64)
-#     admin_email = models.CharField(max_length=64, unique=True)
 
 class User(models.Model):
     user_name = models.CharField(
