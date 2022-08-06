@@ -7,4 +7,3 @@ class UserModelSerializer(ModelSerializer):
         model = User
         fields = '__all__'
 
-
