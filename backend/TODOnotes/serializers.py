@@ -6,5 +6,3 @@ class UserModelSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
-
-
