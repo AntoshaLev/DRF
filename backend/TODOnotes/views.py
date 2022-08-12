@@ -26,12 +26,11 @@ class ToDoModelViewSet(ModelViewSet):
 
 def user_get(request, pk=None):
     if pk is not None:
-        user = User.objects.get(pk=pk)
+        user = User.objects.filter(pk=pk).first()
         serializer = UserSerializer(user)
     else:
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
-    #    print(serializer.data)
     json_data = JSONRenderer().render(serializer.data)
     return HttpResponse(json_data)
 
@@ -43,10 +42,10 @@ def user_post(request, pk=None):
     if request.method == 'POST':
         serializer = UserSerializer(data=json_data)
     elif request.method == 'PUT':
-        user = User.objects.get(pk=pk)
+        user = User.objects.filter(pk=pk).first()
         serializer = UserSerializer(user, data=json_data)
     elif request.method == 'PATCH':
-        user = User.objects.get(pk=pk)
+        user = User.objects.filter(pk=pk).first()
         serializer = UserSerializer(user, data=json_data, partial=True)
 
     if serializer.is_valid():
