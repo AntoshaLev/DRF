@@ -39,7 +39,6 @@ class UserModelSerializer(ModelSerializer):
 
 
 class ProjectModelSerializer(ModelSerializer):
-    # users = UserModelSerializer(many=True)
     users = StringRelatedField(many=True)
 
     class Meta:
@@ -49,7 +48,6 @@ class ProjectModelSerializer(ModelSerializer):
 
 class ToDoModelSerializer(HyperlinkedModelSerializer):
     user = UserModelSerializer()
-    # user = StringRelatedField()
     project = ProjectModelSerializer()
 
     class Meta:
