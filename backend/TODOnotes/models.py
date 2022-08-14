@@ -40,3 +40,7 @@ class ToDo(models.Model):
 
     def __str__(self):
         return f'{self.project} {self.user} {self.text}'
+
+    def delete(self, using=None, keep_parents=False):
+        current_todo = self.is_active = False
+        return current_todo
