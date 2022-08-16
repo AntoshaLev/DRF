@@ -1,5 +1,7 @@
 from rest_framework.exceptions import ValidationError
-from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, StringRelatedField, Serializer, CharField
+from rest_framework.fields import URLField
+from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, StringRelatedField, Serializer, \
+    CharField
 from .models import User, ToDo, Project
 
 
@@ -39,17 +41,18 @@ class UserModelSerializer(ModelSerializer):
 
 
 class ProjectModelSerializer(ModelSerializer):
-    users = StringRelatedField(many=True)
+    # users = StringRelatedField(many=True)
 
     class Meta:
         model = Project
         fields = '__all__'
 
 
-class ToDoModelSerializer(HyperlinkedModelSerializer):
-    user = UserModelSerializer()
-    project = ProjectModelSerializer()
+class ToDoModelSerializer(ModelSerializer):
+    # user = UserModelSerializer()
+    # project = ProjectModelSerializer()
 
     class Meta:
         model = ToDo
         fields = '__all__'
+

@@ -6,7 +6,7 @@ from TODOnotes.views import UserModelViewSet, ProjectModelViewSet, ToDoModelView
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
 router.register('projects', ProjectModelViewSet)
-router.register('ToDo', ToDoModelViewSet)
+router.register('todos', ToDoModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
