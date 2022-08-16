@@ -34,14 +34,10 @@ class UserModelViewSet(mixins.CreateModelMixin,
     queryset = User.objects.all()
 
 
-class ProjectModelViewSet(mixins.CreateModelMixin,
-                          mixins.RetrieveModelMixin,
-                          mixins.UpdateModelMixin,
-                          mixins.ListModelMixin,
-                          GenericViewSet):
+class ProjectModelViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
-    # pagination_class = ProjectsLimitOffsetPagination
+    pagination_class = ProjectsLimitOffsetPagination
     # DjangoFilterBackend - фильтрация в url /?field=значение
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['name']
@@ -57,7 +53,7 @@ class ProjectModelViewSet(mixins.CreateModelMixin,
 class ToDoModelViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = ToDoModelSerializer
-    # pagination_class = ToDoLimitOffsetPagination
+    pagination_class = ToDoLimitOffsetPagination
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['text', 'is_active']
 
