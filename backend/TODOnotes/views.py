@@ -41,6 +41,7 @@ class ProjectModelViewSet(mixins.CreateModelMixin,
                           GenericViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
+
     # pagination_class = ProjectsLimitOffsetPagination
     # DjangoFilterBackend - фильтрация в url /?field=значение
     filter_backends = [DjangoFilterBackend]
