@@ -13,6 +13,7 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework.permissions import IsAuthenticated
 from .models import User, Project, ToDo
 from .serializers import UserModelSerializer, UserSerializer, ProjectModelSerializer, ToDoModelSerializer
 
@@ -30,6 +31,7 @@ class UserModelViewSet(mixins.CreateModelMixin,
                        mixins.UpdateModelMixin,
                        mixins.ListModelMixin,
                        GenericViewSet):
+    permission_classes = [IsAuthenticated]
     serializer_class = UserModelSerializer
     queryset = User.objects.all()
 
