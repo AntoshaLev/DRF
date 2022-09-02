@@ -15,7 +15,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
 from .models import User, Project, ToDo
-from .serializers import UserModelSerializer, UserSerializer, ProjectModelSerializer, ToDoModelSerializer
+from .serializers import UserModelSerializer, UserSerializer, ProjectModelSerializer, ToDoModelSerializer, UserModelSerializerV2
 
 
 class ProjectsLimitOffsetPagination(LimitOffsetPagination):
@@ -32,8 +32,13 @@ class UserModelViewSet(mixins.CreateModelMixin,
                        mixins.ListModelMixin,
                        GenericViewSet):
     permission_classes = [IsAuthenticated]
-    serializer_class = UserModelSerializer
     queryset = User.objects.all()
+
+    def get_serializer_class(self):
+        # UserModelSerializerV2
+        if self.request.version == '2.0':
+            return UserModelSerializerV2
+        return UserModelSerializer
 
 
 class ProjectModelViewSet(mixins.CreateModelMixin,
