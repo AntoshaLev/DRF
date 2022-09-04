@@ -1,17 +1,26 @@
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from TODOnotes.views import UserModelViewSet, ProjectModelViewSet, ToDoModelViewSet, user_post, user_get, UserApiView
+from django.urls import path, include, re_path
+from drf_yasg import openapi
+from rest_framework.permissions import AllowAny
+from TODOnotes.views import user_post, user_get, UserApiView
 from rest_framework.authtoken.views import obtain_auth_token
+from drf_yasg.views import get_schema_view
 
-router = DefaultRouter()
-router.register('users', UserModelViewSet)
-router.register('projects', ProjectModelViewSet)
-router.register('todos', ToDoModelViewSet)
+schema_view = get_schema_view(
+    openapi.Info(
+        title='ToDo List',
+        default_version='1.0',
+        description='Some todo list',
+        contact=openapi.Contact(email='test@mail.com'),
+        license=openapi.License(name='MIT')
+    ),
+    public=True,
+    permission_classes=(AllowAny,)
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/', include('TODOnotes.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api-auth-token/', obtain_auth_token),
     path('user_post', user_post),
@@ -20,4 +29,6 @@ urlpatterns = [
     path('user_api_get', user_get),
     path('user_api_get_class', UserApiView.as_view()),
     path('user_get/<int:pk>', user_get),
+    path('swagger/', schema_view.with_ui()),
+    re_path(r'swagger(?P<format>\.json|\.yaml)', schema_view.without_ui()),
 ]
