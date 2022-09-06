@@ -34,6 +34,11 @@ class UserSerializer(Serializer):
         return attrs
 
 
+class ProjectSerializer(Serializer):
+    name = CharField(max_length=64)
+    users = UserSerializer(many=True)
+
+
 class UserModelSerializer(ModelSerializer):
     class Meta:
         model = User
