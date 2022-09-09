@@ -35,12 +35,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'graphene_django',
+    'drf_yasg',
+
     'rest_framework',
     'corsheaders',
     'TODOnotes',
     'django_filters',
     'rest_framework.authtoken',
-    'drf_yasg',
     'todo_app',
 ]
 
@@ -107,6 +110,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'TODOnotes.graphql.schema'
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

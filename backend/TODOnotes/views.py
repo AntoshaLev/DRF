@@ -15,7 +15,8 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
 from .models import User, Project, ToDo
-from .serializers import UserModelSerializer, UserSerializer, ProjectModelSerializer, ToDoModelSerializer, UserModelSerializerV2
+from .serializers import UserModelSerializer, UserSerializer, ProjectModelSerializer, ToDoModelSerializer, \
+    UserModelSerializerV2, ProjectSerializer
 
 
 class ProjectsLimitOffsetPagination(LimitOffsetPagination):
@@ -130,3 +131,18 @@ def user_post(request, pk=None):
         return HttpResponse(json_data)
 
     return HttpResponseBadRequest(JSONRenderer().render(serializer.errors))
+
+@api_view(['GET'])
+@renderer_classes([JSONRenderer])
+def project_api_get(request):
+    books = Project.objects.all()
+    serializer = ProjectSerializer(books, many=True)
+    return Response(serializer.data)
+
+
+def project_get(request):
+    books = Project.objects.all()
+    serializer = ProjectSerializer(books, many=True)
+
+    json_data = JSONRenderer().render(serializer.data)
+    return HttpResponse(json_data)

@@ -4,10 +4,8 @@ import './App.css';
 import UserList from './components/UserList.js'
 import ProjectList from './components/ProjectList.js'
 import ToDoList from './components/ToDoList.js'
-import MenuList from "./components/MenuList.js"
 import LoginForm from "./components/LoginForm"
 import UserProjectList from "./components/UserProjectList"
-import Footer from "./components/footer.js"
 import {HashRouter, BrowserRouter, Route, Routes, Link, Navigate, useParams, useLocation} from 'react-router-dom'
 
 const NotFound = () => {

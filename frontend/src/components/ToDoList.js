@@ -1,17 +1,17 @@
-const TodoItem = ({todo}) => {
+const TodoItem = ({ToDo}) => {
     return (
         <tr>
         <td>
-            {todo.todo_text}
+            {ToDo.todo_text}
         </td>
         <td>
-            {todo.is_active}
+            {ToDo.is_active}
         </td>
         <td>
-            {todo.todo_project}
+            {ToDo.todo_project}
         </td>
         <td>
-            {todo.users}
+            {ToDo.users}
         </td>
         </tr>
     )
@@ -32,7 +32,7 @@ const TodoList = ({todos}) => {
         <th>
             Users
         </th>
-        {todos.map((todo) => <TodoItem todo={todo}/>)}
+        {todos.map((ToDo) => <TodoItem todo={ToDo}/>)}
         </table>
     )
 }
