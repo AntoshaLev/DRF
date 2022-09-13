@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
 from drf_yasg import openapi
 from rest_framework.permissions import AllowAny
 from TODOnotes.views import user_post, user_get, UserApiView, project_get
@@ -35,4 +36,5 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui()),
     path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     re_path(r'swagger(?P<format>\.json|\.yaml)', schema_view.without_ui()),
+    path('', TemplateView.as_view(template_name='index.html'))
 ]
